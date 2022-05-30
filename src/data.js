@@ -18,3 +18,5 @@ const data =[
         img: 'https://cdn.pixabay.com/photo/2016/06/20/22/35/mercedes-benz-1470136__340.jpg'
     }
 ]
+
+export default data;
