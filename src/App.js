@@ -1,44 +1,29 @@
 import "./App.css";
-import data from "./data";
-import React, { useState,useEffect } from "react";
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 
 function App() {
-  const [items, setItems] = useState(data);
-  const [index, setIndex] = useState(0);
-
-  useEffect(() =>{
-    const lastIndex = items.length - 1
-    if(index < 0){
-      setIndex(lastIndex)
-    }
-    if(index > lastIndex){
-      setIndex(0)
-    }
-  },[index,items])
-
   return (
-    <div className="app">
-      <h2 className="title">Carousel</h2>
-      <div className="section">
-        <button onClick={()=> setIndex(index - 1)}>Prev</button>
-        {items.map((item,itemIndex) => {
-
-          let position = 'nextSlide'
-          if(itemIndex === index){
-            position = 'activeSlide'
-          }
-          if(itemIndex === index - 1 || (index === 0 && itemIndex === items.length - 1)){
-            position = 'lastSlide'
-          }
-        return <article className={position} key={item.id}>
-                <img className="img" src={item.img} alt="" />
-                <p>{item.name}</p>
-                <small>{item.desc}</small>
-               </article>
-        })}
-        <button onClick={()=> setIndex(index + 1)}>Next</button>
-      </div>
-    </div>
+    <Swiper
+      spaceBetween={20}
+      slidesPerView={3}
+      navigation
+      pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper) => console.log(swiper)}
+    >
+      <SwiperSlide>Slide 1</SwiperSlide>
+      <SwiperSlide>Slide 2</SwiperSlide>
+      <SwiperSlide>Slide 3</SwiperSlide>
+      <SwiperSlide>Slide 4</SwiperSlide>
+      ...
+    </Swiper>
   );
 }
 
